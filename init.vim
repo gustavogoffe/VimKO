@@ -1,15 +1,29 @@
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/theme.vimrc
-source $HOME/.config/nvim/config/mappings.vimrc
+source $HOME/.config/nvim/managed_mappings.vimrc
 
+set encoding=UTF-8
 set hidden                   " hide buffers when abandoned instead of unload
 set synmaxcol=1000           " Don't syntax highlight long lines
-set colorcolumn=80
+set colorcolumn=80,120
+set spelllang=en
+set mmp=5000
+set scrolloff=3
 
-" set tags=./.tags
+" Give more space for displaying messages.
+set cmdheight=2
+
+set tags=./.tags
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=100
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
 
 " Behavior
 set number
@@ -17,8 +31,8 @@ set relativenumber
 set nowrap
 set inccommand=nosplit
 set list                " Show hidden characters
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
-set clipboard+=unnamedplus
+set listchars=tab:→\ ,nbsp:␣,trail:•,eol:\ ,precedes:«,extends:»
+set clipboard=unnamed
 set foldmethod=indent
 set foldlevelstart=99
 
@@ -28,6 +42,7 @@ set showtabline=2       " Always show the tabs line
 set scrolloff=2         " Keep at least 2 lines above/below
 set sidescrolloff=5     " Keep at least 5 lines left/right
 set display=lastline
+set cursorline
 
 " Javascript
 " Pretifier configuration
@@ -73,9 +88,17 @@ au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 " Treat words with dash as a word
 set iskeyword+=-
 
+" Coc
+augroup mygroup
+  autocmd!
+
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
 " Checkbox toogler
 fu! ToogleCheckbox()
-	let line = getline('.')
+  let line = getline('.')
 
   if(match(line, '\[.*\]') != -1)
     let states = [' ', 'x', 'n/a']
@@ -99,40 +122,66 @@ fu! ToogleCheckbox()
     let line = substitute(line, '\<', '' . '[ ]' . ' ', '')
   endif
 
-	call setline('.', line)
+  call setline('.', line)
 endf
 
-let g:rails_projections = {
-      \ "config/projections.json": {
-      \   "command": "projections"
-      \ },
-      \ "spec/features/*_spec.rb": {
-      \   "command": "feature",
-      \   "template": "require 'spec_helper'\n\nfeature '%h' do\n\nend",
-      \ }}
+set timeoutlen=500
 
-let g:rails_gem_projections = {
-      \ "active_model_serializers": {
-      \   "app/serializers/*_serializer.rb": {
-      \     "command": "serializer",
-      \     "affinity": "model",
-      \     "test": "spec/serializers/%s_spec.rb",
-      \     "related": "app/models/%s.rb",
-      \     "template": "class %SSerializer < ActiveModel::Serializer\nend"
-      \   }
-      \ },
-      \ "draper": {
-      \   "app/decorators/*_decorator.rb": {
-      \     "command": "decorator",
-      \     "affinity": "model",
-      \     "test": "spec/decorators/%s_spec.rb",
-      \     "related": "app/models/%s.rb",
-      \     "template": "class %SDecorator < Draper::Decorator\nend"
-      \   }
-      \ },
-      \ "factory_girl_rails": {
-      \   "spec/factories.rb": {
-      \     "command": "factories",
-      \     "template": "FactoryGirl.define do\nend"
-      \   }
-      \ }}
+function! RunTestsOnLeftPane(file_name)
+  if(match(a:file_name, '_spec.rb') != -1)
+    VimuxRunCommand("clear; bundle exec spring rspec " . a:file_name . " --fail-fast -fd")
+  elseif(match(a:file_name, '.feature') != -1)
+    VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
+  elseif(match(a:file_name, 'test/.*_test.exs') != -1)
+    VimuxRunCommand("clear; mix test " . a:file_name)
+  elseif(match(a:file_name, 'test/.*_test.rb') != -1)
+    VimuxRunCommand("clear; be rake test TEST=" . a:file_name)
+  elseif(match(a:file_name, 'tests/flows/.*_process.rb') != -1)
+    VimuxRunCommand("clear; bundle exec flows test " . a:file_name)
+  endif
+endfunction
+
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+function! OpenCurrentFileOnGithub()
+  let branch_url = system('git remote get-url --all origin | grep github | head -1')
+  let branch_path = substitute(split(branch_url, ':')[1], '.git', '', 'g')
+
+  let repo_url = "https://github.com/" .  substitute(branch_path, '\n\+$', '', '') . "/blob/master/" . expand('%') . '\#L' . line('.')
+  exec "! open " . repo_url
+endfunction
+
+function! CutAndPasteByLineNumber(relative_line_number)
+  let cursor_position = getpos('.')
+
+  exec a:relative_line_number . 'd'
+  call setpos(".", cursor_position)
+  normal P
+  call setpos(".", cursor_position)
+endfunction
+
+" set working directory to git project root
+" or directory of current file if not git project
+function! SetProjectRoot()
+  " default to the current file's directory
+  lcd %:p:h
+  let git_dir = system("git rev-parse --show-toplevel")
+  " See if the command output starts with 'fatal' (if it does, not in a git repo)
+  let is_not_git_dir = matchstr(git_dir, '^fatal:.*')
+  " if git project, change local directory to git project root
+  if empty(is_not_git_dir)
+    lcd `=git_dir`
+  endif
+endfunction
+
+" TODO add to mappings manager 
+cnoremap <C-A> <Home>
+
+
+
+
+
+
