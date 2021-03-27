@@ -71,9 +71,6 @@ call plug#begin()
   " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
 
-  Plug 'wellle/context.vim'
-    let g:context_enabled = 0
-
   " Send commands to other tmux tabs from vim
   Plug 'benmills/vimux'
     let g:VimuxOrientation = "h"
@@ -156,7 +153,6 @@ call plug#begin()
 " Airline
 " -----------------------------------------------------------------------------
     Plug 'vim-airline/vim-airline'
-    Plug 'alexvko/vim-airline-themes'
 
     let g:airline_section_a = ''
     let g:airline_section_b = ''

@@ -15,7 +15,7 @@
 "
 
 set termguicolors
-let g:airline_theme='alexvko'
+" let g:airline_theme='alexvko'
 colorscheme one
 " colorscheme github
 let g:one_allow_italics = 1

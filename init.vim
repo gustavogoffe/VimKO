@@ -1,3 +1,6 @@
+let g:python3_host_prog='/usr/local/bin/python3'
+let g:python_host_prog='/usr/bin/python2'
+
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/theme.vimrc
 source $HOME/.config/nvim/managed_mappings.vimrc
