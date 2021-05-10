@@ -27,7 +27,6 @@ leader ' ' do
   normal 'a', "=ap``", desc: 'Indente paragraph'#, keep_cursor_position: true
 
   normal ',', ':<C-u>silent! keeppatterns %substitute/\s\+$//e', desc: 'Remove empty spaces'
-  normal 'o', '<esc>viwp', desc: 'Overwrite word'
 
   normal 'saw', ':%s/\<<C-r><C-w>\>//g<Left><Left>', desc: 'Substitute all occurences', execute: false
 
@@ -44,9 +43,21 @@ leader ' ' do
     normal n.to_s, ":let &l:foldlevel = #{n - 1}", desc: "Fold until level #{n}"
   end
 
+  prefix 'o', name: 'Overwrite', desc: 'Overwrite' do
+    normal 'w', '<esc>viwp', desc: 'Overwrite word'
+
+    normal '(', '<esc>vi(p', desc: 'Overwrite in parentheses block'
+    normal ')', '<esc>vi)p', desc: 'Overwrite in parentheses block'
+
+    normal '[', '<esc>vi[p', desc: 'Overwrite in [] block'
+    normal ']', '<esc>vi)p', desc: 'Overwrite in [] block'
+
+    normal '{', '<esc>vi{p', desc: 'Overwrite in {} block'
+    normal '}', '<esc>vi}p', desc: 'Overwrite in {} block'
+  end
+
   prefix 't', name: 'Toggles', desc: 'Toggles' do
-    normal 'c', ':ContextToggle', desc: 'Context.vim'
-    normal 'r', ':RainbowToggle', desc: 'Rainbow'
+
     normal 'e', desc: 'Toggle everything(under cursor)' do |nvim|
       word = nvim.evaluate('expand("<cword>")')
       nvim.command(":echom '#{word}'")
@@ -83,6 +94,7 @@ leader ' ' do
     visual 't', ':Tabularize /', desc: 'Align by input'
   end
 
+  # TODO: not working
   prefix 'l', name: 'Language', desc: 'Languages' do
     normal 'd', '<Plug>(coc-definition)', desc: '(Coc) Go to definition', recursively: true
     normal 'r', '<Plug>(coc-references)', desc: '(Coc) Find references', recursively: true
@@ -105,18 +117,10 @@ leader ' ' do
     visual 'R', ':<C-u>RubyEvalInsert', desc: "Evaluate Ruby code"
   end
 
-  prefix 'l', name: 'Elixir', 'desc': 'Elixir mappings', filetype: :elixir do
-  end
-
   prefix 'l', name: 'Javascript', 'desc': 'Javascript mappings', filetype: :javascript do
     normal 'd', '<Plug>(jsdoc)', desc: 'Generate docs', recursively: true
   end
 
-  prefix 'l', name: 'Python', 'desc': 'Python mappings', filetype: :python do
-  end
-
-  prefix 'l', name: 'Zsh', 'desc': 'Terminal prefixes', filetype: :zsh do
-  end
 end
 
 prefix 't', name: 'Tabs', desc: 'Interations with Tabs' do
@@ -150,6 +154,7 @@ prefix ';', name: 'FuzzyFinder', desc: 'Fuzzy everything' do
 
   prefix name: 'Rails', desc: 'Rails files', filetype: :ruby do
     normal 'm', ':Files app/models/', desc: 'Models'
+    normal 's', ':Files spec/', desc: 'Specs'
     normal 'c', ':Files app/controllers/', desc: 'Controllers'
     normal 'r', ':Files <cr> spec/_spec.rb<left><left><left><left><left><left><left><left>', desc: 'RSpec'
   end
@@ -246,7 +251,10 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
         nvim.command(":call VimuxRunCommand(\"#{nvim.current.buffer.lines[5]}\")")
       else
         # TODO
-        nvim.command(":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))")
+        # Relative path
+        nvim.command(":call RunTestsOnLeftPane(join([expand('%'), line('.')], ':'))")
+        # Absolute path
+        #nvim.command(":call RunTestsOnLeftPane(join([expand('%:p'), line('.')], ':'))")
       end
     else
       # TODO
@@ -284,6 +292,10 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
   end
 end
 
+# prefix 'c', name: 'Changing text', desc: 'Changing text' do
+#   normal 't', '' desc: 'Change until the end of the tag', execute: false
+# end
+
 normal '*', ':%s/\<<C-r><C-w>\>//n<cr>0N', desc: 'Select all occurences of the word and display a counter', execute: false
 normal '<expr> gp', "'`['.strpart(getregtype(), 0, 1).'`]'", desc: 'Selecte pasted text'
 visual 's', ':s//g<Left><Left>', desc: 'Substitute inside selection', execute: false
@@ -299,8 +311,6 @@ visual '<', '<gv', desc: 'Select blocks after indenting'
 visual '>', '>gv|', desc: 'Select blocks after indenting'
 
 normal 'Q', 'q', desc: 'Record macro'
-
-# normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 
 normal '[g', '<Plug>(coc-diagnostic-prev)', desc: '', recursively: true
 normal ']g', '<Plug>(coc-diagnostic-next)', desc: '', recursively: true
@@ -329,11 +339,6 @@ end
 # end
 
 normal 'gg', ':1', desc: 'Work around for keeping g a prefix for Git'
-
-normal '<silent> <C-d>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)', desc: 'Smooth scrolling'
-normal '<silent> <C-u>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)', desc: 'Smooth scrolling'
-normal '<silent> <C-f>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)', desc: 'Smooth scrolling'
-normal '<silent> <C-b>', ':call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)', desc: 'Smooth scrolling'
 
 normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 

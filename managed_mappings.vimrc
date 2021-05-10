@@ -53,10 +53,6 @@ call extend(g:which_key_map, {'a':'Indente paragraph'})
 nnoremap <leader>, :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 call extend(g:which_key_map, {',':'Remove empty spaces'})
 
-" Overwrite word
-nnoremap <leader>o <esc>viwp
-call extend(g:which_key_map, {'o':'Overwrite word'})
-
 " Substitute all occurences
 nnoremap <leader>saw :%s/\<<C-r><C-w>\>//g<Left><Left>
 call extend(g:which_key_map, {'saw':'Substitute all occurences'})
@@ -110,19 +106,47 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
 
 
   " ----------------------------------------------------------------
+  " Prefix Leader > Overwrite
+  " Key <leader>o
+  " Overwrite
+  " ----------------------------------------------------------------
+  let g:which_key_map['o'] = { 'name' : '+Leader > Overwrite' }
+
+  " Overwrite word
+  nnoremap <leader>ow <esc>viwp
+  call extend(g:which_key_map['o'], {'w':'Overwrite word'})
+
+  " Overwrite in parentheses block
+  nnoremap <leader>o( <esc>vi(p
+  call extend(g:which_key_map['o'], {'(':'Overwrite in parentheses block'})
+
+  " Overwrite in parentheses block
+  nnoremap <leader>o) <esc>vi)p
+  call extend(g:which_key_map['o'], {')':'Overwrite in parentheses block'})
+
+  " Overwrite in [] block
+  nnoremap <leader>o[ <esc>vi[p
+  call extend(g:which_key_map['o'], {'[':'Overwrite in [] block'})
+
+  " Overwrite in [] block
+  nnoremap <leader>o] <esc>vi)p
+  call extend(g:which_key_map['o'], {']':'Overwrite in [] block'})
+
+  " Overwrite in {} block
+  nnoremap <leader>o{ <esc>vi{p
+  call extend(g:which_key_map['o'], {'{':'Overwrite in {} block'})
+
+  " Overwrite in {} block
+  nnoremap <leader>o} <esc>vi}p
+  call extend(g:which_key_map['o'], {'}':'Overwrite in {} block'})
+
+
+  " ----------------------------------------------------------------
   " Prefix Leader > Toggles
   " Key <leader>t
   " Toggles
   " ----------------------------------------------------------------
   let g:which_key_map['t'] = { 'name' : '+Leader > Toggles' }
-
-  " Context.vim
-  nnoremap <leader>tc :ContextToggle<CR>
-  call extend(g:which_key_map['t'], {'c':'Context.vim'})
-
-  " Rainbow
-  nnoremap <leader>tr :RainbowToggle<CR>
-  call extend(g:which_key_map['t'], {'r':'Rainbow'})
 
   " Toggle everything(under cursor)
   nnoremap <leader>te :call ExecuteRubyMapping('leaderte', 'all')<CR>
@@ -235,15 +259,6 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
 
 
   " ----------------------------------------------------------------
-  " Prefix Leader > Elixir
-  " Key <leader>l
-  " Filetype: elixir
-  " Elixir mappings
-  " ----------------------------------------------------------------
-  autocmd FileType elixir let g:which_key_map['l'] = { 'name' : '+Leader > Elixir' }
-
-
-  " ----------------------------------------------------------------
   " Prefix Leader > Javascript
   " Key <leader>l
   " Filetype: javascript
@@ -254,24 +269,6 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
   " Generate docs
   autocmd FileType javascript nmap <leader>ld <Plug>(jsdoc)
   autocmd FileType javascript call extend(g:which_key_map['l'], {'d':'Generate docs'})
-
-
-  " ----------------------------------------------------------------
-  " Prefix Leader > Python
-  " Key <leader>l
-  " Filetype: python
-  " Python mappings
-  " ----------------------------------------------------------------
-  autocmd FileType python let g:which_key_map['l'] = { 'name' : '+Leader > Python' }
-
-
-  " ----------------------------------------------------------------
-  " Prefix Leader > Zsh
-  " Key <leader>l
-  " Filetype: zsh
-  " Terminal prefixes
-  " ----------------------------------------------------------------
-  autocmd FileType zsh let g:which_key_map['l'] = { 'name' : '+Leader > Zsh' }
 
 
 " ----------------------------------------------------------------
@@ -377,6 +374,10 @@ call extend(g:which_key_map_fuzzyfinder, {'d':'Go to Datafix'})
   " Models
   autocmd FileType ruby nnoremap ;m :Files app/models/<CR>
   autocmd FileType ruby call extend(g:which_key_map_fuzzyfinder, {'m':'Models'})
+
+  " Specs
+  autocmd FileType ruby nnoremap ;s :Files spec/<CR>
+  autocmd FileType ruby call extend(g:which_key_map_fuzzyfinder, {'s':'Specs'})
 
   " Controllers
   autocmd FileType ruby nnoremap ;c :Files app/controllers/<CR>
@@ -671,18 +672,6 @@ call extend(g:which_key_map_git, {'ac':'Add and Commit'})
 
 " Work around for keeping g a prefix for Git
 nnoremap gg :1<CR>
-
-" Smooth scrolling
-nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-
-" Smooth scrolling
-nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-
-" Smooth scrolling
-nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-
-" Smooth scrolling
-nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
 
 " Easymotion
 nmap / <Plug>(easymotion-overwin-f2)

@@ -25,6 +25,7 @@ Only tested with Neovim.
 | -                | -             | -                                                   |
 | `Reload`         | Command       | Reload vimrc                                        |
 | `<Leader>a`      | Normal        | Align paragraph                                     |
+| `<Leader>e`      | Normal        | Align entire file (not working)                     |
 | `<Leader>,`      | Normal        | Remove all spaces EOL                               |
 | `<Leader>ow`     | Normal        | Overwrite word under cursor                         |
 | `<Leader>saw`    | Normal/visual | Replace all occurences under cursor                 |

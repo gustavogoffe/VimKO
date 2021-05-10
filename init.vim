@@ -131,8 +131,11 @@ endf
 set timeoutlen=500
 
 function! RunTestsOnLeftPane(file_name)
-  if(match(a:file_name, '_spec.rb') != -1)
-    VimuxRunCommand("clear; bundle exec spring rspec " . a:file_name . " --fail-fast -fd")
+  if(match(a:file_name, 'hub3') != -1 && match(a:file_name, '_spec.rb') != -1)
+    VimuxRunCommand("clear; ddo rspec " . a:file_name)
+  elseif(match(a:file_name, '_spec.rb') != -1)
+    "VimuxRunCommand("clear; bundle exec spring rspec " . a:file_name . " --fail-fast -fd")
+    VimuxRunCommand("clear; ddo rspec " . a:file_name)
   elseif(match(a:file_name, '.feature') != -1)
     VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
   elseif(match(a:file_name, 'test/.*_test.exs') != -1)
@@ -184,6 +187,8 @@ endfunction
 cnoremap <C-A> <Home>
 
 
+" set color to foreground almost full white
+call one#highlight('Normal',       'e8eaeb',  '',  '')
 
 
 
