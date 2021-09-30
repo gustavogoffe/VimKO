@@ -113,8 +113,12 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
   let g:which_key_map['o'] = { 'name' : '+Leader > Overwrite' }
 
   " Overwrite word
-  nnoremap <leader>ow <esc>viwp
+  nnoremap <leader>ow <esc>viwpyiw
   call extend(g:which_key_map['o'], {'w':'Overwrite word'})
+
+  " Overwrite line
+  nnoremap <leader>ol <esc>O<esc>Pjddkjdd
+  call extend(g:which_key_map['o'], {'l':'Overwrite line'})
 
   " Overwrite in parentheses block
   nnoremap <leader>o( <esc>vi(p
@@ -180,6 +184,20 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
 
   " Align by :
   xnoremap <leader>ta: :Tabularize /:\zs<CR>
+
+  " Align by {
+  nnoremap <leader>ta{ :Tabularize /{\zs<CR>
+  call extend(g:which_key_map['ta'], {'{':'Align by {'})
+
+  " Align by {
+  xnoremap <leader>ta{ :Tabularize /{\zs<CR>
+
+  " Align by -
+  nnoremap <leader>ta- :Tabularize /-\zs<CR>
+  call extend(g:which_key_map['ta'], {'-':'Align by -'})
+
+  " Align by -
+  xnoremap <leader>ta- :Tabularize /-\zs<CR>
 
   " Align by input
   nnoremap <leader>tat :Tabularize /
@@ -666,9 +684,17 @@ call which_key#register('g', 'g:which_key_map_git')
 nnoremap g :<c-u>WhichKey 'g'<CR>
 vnoremap g :<c-u>WhichKeyVisual 'g'<CR>
 
+" List all files to go to the stage area
+nnoremap gst :call VimuxRunCommand('git status')<CR>
+call extend(g:which_key_map_git, {'st':'List all files to go to the stage area'})
+
 " Add and Commit
 nnoremap gac :call VimuxRunCommand('git add . && git commit')<CR>
 call extend(g:which_key_map_git, {'ac':'Add and Commit'})
+
+" Amend Commit
+nnoremap gam :call VimuxRunCommand('git add . && git commit --amend')<CR>
+call extend(g:which_key_map_git, {'am':'Amend Commit'})
 
 " Work around for keeping g a prefix for Git
 nnoremap gg :1<CR>

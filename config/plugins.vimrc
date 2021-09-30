@@ -13,9 +13,6 @@ call plug#begin()
   " Lightning fast left-right movement in Vim
   Plug 'unblevable/quick-scope'
 
-  " Vim cursor word
-  Plug 'itchyny/vim-cursorword'
-
   " Better motion
   Plug 'justinmk/vim-sneak'
   let g:sneak#label = 1
@@ -33,6 +30,9 @@ call plug#begin()
 
   " " Rainbow Parentheses
   Plug 'luochen1990/rainbow'
+
+  " " Make the yanked region apparent!
+  Plug 'machakann/vim-highlightedyank'
 
   " " Smooth scrolling
   " Plug 'yuttie/comfortable-motion.vim'
@@ -62,13 +62,17 @@ call plug#begin()
   "   let g:VimuxPromptString = "> "
 
   " " Highligh cursor word
-  Plug 'itchyny/vim-cursorword'
+  " Plug 'itchyny/vim-cursorword'
 
   " " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
 
-  " " Alig code
+  " " Align code
   Plug 'godlygeek/tabular',{  'on': 'Tabularize'}
+
+  " Markdown
+  " Plug 'plasticboy/vim-markdown'
+  " Plug 'coachshea/vim-textobj-markdown'
 
   " " Comments
   Plug 'tpope/vim-commentary'
@@ -110,8 +114,7 @@ call plug#begin()
 " " Sidebar
 " " -----------------------------------------------------------------------------
     Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-    " Plug 'ryanoasis/vim-devicons',{ 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-    "   autocmd! User nerdtree exe 'source' '$HOME/.config/nvim/config/plugins/nerdtree.vim'
+    autocmd! User nerdtree exe 'source' '$HOME/.config/nvim/config/plugins/nerdtree.vim'
 
 " " -----------------------------------------------------------------------------
 " " Airline
@@ -120,17 +123,17 @@ call plug#begin()
 
     let g:airline_section_a = ''
     let g:airline_section_b = ''
-    " let g:airline_section_z = '%3p%%/%L'
+    " " let g:airline_section_z = '%3p%%/%L'
     let g:airline_section_y = '%#__accent_bold#%{LineNoIndicator()}%#__restore__#'
-    " let g:airline_section_x = ''
-    " let g:airline#extensions#tagbar#enabled = 1
+    " " let g:airline_section_x = ''
+    " " let g:airline#extensions#tagbar#enabled = 1
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 " " -----------------------------------------------------------------------------
 " " Autocomplete and Snippets
 " " -----------------------------------------------------------------------------
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-  "   let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver']
+    let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver']
 
   " Plug 'neoclide/coc-snippets'
   " Plug 'SirVer/ultisnips'
@@ -140,8 +143,8 @@ call plug#begin()
   " "   let g:UltiSnipsJumpForwardTrigger="<c-n>"
   " "   let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-  Plug 'honza/vim-snippets'
-  Plug 'ervandew/supertab'
+  " Plug 'honza/vim-snippets'
+  " Plug 'ervandew/supertab'
 
 " " -----------------------------------------------------------------------------
 " " Text Objects
@@ -157,10 +160,10 @@ call plug#begin()
   " Plug 'kana/vim-textobj-function'
   " Plug 'mxw/vim-jsx'
   "
-  Plug 'tpope/vim-surround'
-    let g:surround_35  = "#{\r}"    " #
-    let g:surround_45 = "<% \r %>"  " -
-    let g:surround_61 = "<%= \r %>" " =
+  " Plug 'tpope/vim-surround'
+  "   let g:surround_35  = "#{\r}"    " #
+  "   let g:surround_45 = "<% \r %>"  " -
+  "   let g:surround_61 = "<%= \r %>" " =
 
 " " -----------------------------------------------------------------------------
 " " Ctags
@@ -174,8 +177,8 @@ call plug#begin()
 " " -----------------------------------------------------------------------------
 " " Git
 " " -----------------------------------------------------------------------------
-  " Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  " Plug 'airblade/vim-gitgutter'
   Plug 'Xuyuanp/nerdtree-git-plugin',{  'on': ['NERDTreeToggle', 'NERDTreeFind'] }
   Plug 'jreybert/vimagit'
 
@@ -201,7 +204,7 @@ call plug#begin()
 " " -----------------------------------------------------------------------------
 " " PSQL
 " " -----------------------------------------------------------------------------
-  Plug 'lifepillar/pgsql.vim'
+  " Plug 'lifepillar/pgsql.vim'
 
 call plug#end()
 

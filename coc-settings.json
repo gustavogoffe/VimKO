@@ -3,6 +3,7 @@
   "suggest.enablePreview": true,
   "suggest.timeout": 1000,
   "suggest.noselect": false,
+  "git.enableGlobalStatus": false,
   "coc.preferences.formatOnSaveFiletypes": [ ],
   "languageserver": {
     "golang": {

@@ -44,7 +44,8 @@ leader ' ' do
   end
 
   prefix 'o', name: 'Overwrite', desc: 'Overwrite' do
-    normal 'w', '<esc>viwp', desc: 'Overwrite word'
+    normal 'w', '<esc>viwpyiw', desc: 'Overwrite word'
+    normal 'l', '<esc>O<esc>Pjddkjdd', desc: 'Overwrite line'
 
     normal '(', '<esc>vi(p', desc: 'Overwrite in parentheses block'
     normal ')', '<esc>vi)p', desc: 'Overwrite in parentheses block'
@@ -63,7 +64,8 @@ leader ' ' do
       nvim.command(":echom '#{word}'")
       new_word = {
         'true' => 'false', 'false' => 'true',
-        '0' => '1', '1' => '0'
+        '0' => '1', '1' => '0',
+        'props' => '()'
       }[word]
 
       if new_word
@@ -85,7 +87,7 @@ leader ' ' do
   end
 
   prefix 'ta', name: 'Tabularize', desc: 'Text alignment' do
-    [',', '=', ':'].each do |key|
+    [',', '=', ':', '{', '-'].each do |key|
       normal key, ":Tabularize /#{key}\\zs", desc: "Align by #{key}"
       visual key, ":Tabularize /#{key}\\zs", desc: "Align by #{key}"
     end
@@ -331,7 +333,9 @@ prefix name: 'Resize', desc: '' do
 end
 
 prefix 'g', name: 'Git', desc: 'Git and Github commands' do
+  normal 'st', ":call VimuxRunCommand('git status')", desc: 'List all files to go to the stage area'
   normal 'ac', ":call VimuxRunCommand('git add . && git commit')", desc: 'Add and Commit'
+  normal 'am', ":call VimuxRunCommand('git add . && git commit --amend')", desc: "Amend Commit"
 end
 
 # insert '<C-y>,' name: 'Ruby Emmet', desc: 'REmmet is a plugin for many popular text editors which greatly improves Ruby workflow' do
