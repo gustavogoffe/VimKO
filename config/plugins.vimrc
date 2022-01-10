@@ -34,10 +34,6 @@ call plug#begin()
   " " Make the yanked region apparent!
   Plug 'machakann/vim-highlightedyank'
 
-  " " Smooth scrolling
-  " Plug 'yuttie/comfortable-motion.vim'
-  "   let g:comfortable_motion_no_default_key_mappings = 1
-  "   let g:comfortable_motion_impulse_multiplier = 1
 
   Plug 'drzel/vim-line-no-indicator'
 
@@ -52,6 +48,10 @@ call plug#begin()
   " " Highligh the cursor word
   Plug 't9md/vim-quickhl'
 
+  " " Quickr preview
+  Plug 'ronakg/quickr-preview.vim'
+  let g:quickr_preview_keymaps = 0
+
   " " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
 
@@ -64,11 +64,11 @@ call plug#begin()
   " " Highligh cursor word
   " Plug 'itchyny/vim-cursorword'
 
-  " " Multiple cursors
+  ckr_preview)q" " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
 
   " " Align code
-  Plug 'godlygeek/tabular',{  'on': 'Tabularize'}
+  Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 
   " Markdown
   " Plug 'plasticboy/vim-markdown'

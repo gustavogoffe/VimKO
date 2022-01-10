@@ -19,10 +19,6 @@ call extend(g:which_key_map, {'r':'Remove lines with a specify pattern'})
 nnoremap <leader>z :call ExecuteRubyMapping('leaderz', 'all')<CR>
 call extend(g:which_key_map, {'z':'Jusst testing'})
 
-" Parameterize current line
-nnoremap <leader>J :call ExecuteRubyMapping('leaderJ', 'all')<CR>
-call extend(g:which_key_map, {'J':'Parameterize current line'})
-
 " Toggle Checkbox (empty/[ ]/[x])
 nnoremap <leader>x :call ToogleCheckbox()<CR>
 call extend(g:which_key_map, {'x':'Toggle Checkbox (empty/[ ]/[x])'})
@@ -80,6 +76,10 @@ call extend(g:which_key_map, {'ck':'Copy a line BELLOW'})
 nnoremap <leader>cj :+t.<left><left>
 call extend(g:which_key_map, {'cj':'Copy a line ABOVE'})
 
+" Opens a preview
+nnoremap <leader>f <Plug>(quickr_preview)
+call extend(g:which_key_map, {'f':'Opens a preview'})
+
 " Fold until level 1
 nnoremap <leader>1 :let &l:foldlevel = 0<CR>
 call extend(g:which_key_map, {'1':'Fold until level 1'})
@@ -103,6 +103,10 @@ call extend(g:which_key_map, {'5':'Fold until level 5'})
 " Fold until level 6
 nnoremap <leader>6 :let &l:foldlevel = 5<CR>
 call extend(g:which_key_map, {'6':'Fold until level 6'})
+
+" Parameterize current line
+nnoremap <leader>J :call ExecuteRubyMapping('leaderJ', 'all')<CR>
+call extend(g:which_key_map, {'J':'Parameterize current line'})
 
 
   " ----------------------------------------------------------------
@@ -155,6 +159,10 @@ call extend(g:which_key_map, {'6':'Fold until level 6'})
   " Toggle everything(under cursor)
   nnoremap <leader>te :call ExecuteRubyMapping('leaderte', 'all')<CR>
   call extend(g:which_key_map['t'], {'e':'Toggle everything(under cursor)'})
+
+  " Toggle quotes
+  nnoremap <leader>tq :call ExecuteRubyMapping('leadertq', 'all')<CR>
+  call extend(g:which_key_map['t'], {'q':'Toggle quotes'})
 
 
   " ----------------------------------------------------------------

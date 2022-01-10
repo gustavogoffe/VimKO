@@ -1,4 +1,4 @@
-let g:python3_host_prog='/usr/local/bin/python3'
+let g:python3_host_prog='/opt/homebrew/bin/python3'
 let g:python_host_prog='/usr/bin/python2'
 
 source $HOME/.config/nvim/config/plugins.vimrc
@@ -131,10 +131,8 @@ endf
 set timeoutlen=500
 
 function! RunTestsOnLeftPane(file_name)
-  if(match(a:file_name, 'hub3') != -1 && match(a:file_name, '_spec.rb') != -1)
-    VimuxRunCommand("clear; bundle exec spring rspec " . a:file_name)
-  elseif(match(a:file_name, '_spec.rb') != -1)
-    VimuxRunCommand("clear; bundle exec rspec " . a:file_name)
+  if(match(a:file_name, '_spec.rb') != -1)
+    VimuxRunCommand("bundle exec rspec " . a:file_name)
   elseif(match(a:file_name, '.feature') != -1)
     VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
   elseif(match(a:file_name, 'test/.*_test.exs') != -1)

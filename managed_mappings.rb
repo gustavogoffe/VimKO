@@ -10,12 +10,6 @@ leader ' ' do
     nvim.current.line = "Yay"
   end
 
-  normal 'J', desc: 'Parameterize current line' do |nvim|
-    line = nvim.current.line
-    line.gsub!(/[^0-9A-Za-z]/, '').strip.gsub(/ +/, '-')
-    nvim.current.line = line
-  end
-
   normal 'x', ':call ToogleCheckbox()', desc: 'Toggle Checkbox (empty/[ ]/[x])'
 
   normal 'h', "<Plug>(quickhl-manual-this)", desc: 'Highlight toggle word', recursively: true
@@ -39,8 +33,16 @@ leader ' ' do
   normal 'ck', ':-t.<left><left>', desc: 'Copy a line BELLOW', execute: false
   normal 'cj', ':+t.<left><left>', desc: 'Copy a line ABOVE', execute: false
 
+  normal 'f', "<Plug>(quickr_preview)", desc: 'Opens a preview'
+
   (1..6).each do |n|
     normal n.to_s, ":let &l:foldlevel = #{n - 1}", desc: "Fold until level #{n}"
+  end
+
+  normal 'J', desc: 'Parameterize current line' do |nvim|
+    line = nvim.current.line
+    line.gsub!(/[^0-9A-Za-z]/, '').strip.gsub(/ +/, '-')
+    nvim.current.line = line
   end
 
   prefix 'o', name: 'Overwrite', desc: 'Overwrite' do
@@ -80,6 +82,11 @@ leader ' ' do
       elsif current_line['def ']
         nvim.command(':normal 0wwiself.')
       end
+    end
+
+    normal 'q', desc: 'Toggle quotes' do |nvim|
+      word = nvim.evaluate('expand("<cword>")')
+      nvim.command(":echom '#{word}'")
     end
 
     # TODO: Implement expressions
@@ -122,7 +129,6 @@ leader ' ' do
   prefix 'l', name: 'Javascript', 'desc': 'Javascript mappings', filetype: :javascript do
     normal 'd', '<Plug>(jsdoc)', desc: 'Generate docs', recursively: true
   end
-
 end
 
 prefix 't', name: 'Tabs', desc: 'Interations with Tabs' do
@@ -281,7 +287,6 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
     end
   end
 
-  # normal 'c', ":call VimuxRunCommand(join(['clear ;', 'bin/cop', expand('%')], ' '))", desc: "Rubycop", filetype: :ruby
   normal '!', ':VimuxPromptCommand', desc: 'Promp Vimux'
   normal 'l', ':VimuxRunLastCommand<CR> :echo g:VimuxLastCommand', desc: 'Run last command'
 
