@@ -33,8 +33,6 @@ leader ' ' do
   normal 'ck', ':-t.<left><left>', desc: 'Copy a line BELLOW', execute: false
   normal 'cj', ':+t.<left><left>', desc: 'Copy a line ABOVE', execute: false
 
-  normal 'f', "<Plug>(quickr_preview)", desc: 'Opens a preview'
-
   (1..6).each do |n|
     normal n.to_s, ":let &l:foldlevel = #{n - 1}", desc: "Fold until level #{n}"
   end

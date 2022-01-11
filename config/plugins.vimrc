@@ -64,7 +64,7 @@ call plug#begin()
   " " Highligh cursor word
   " Plug 'itchyny/vim-cursorword'
 
-  ckr_preview)q" " Multiple cursors
+  " Multiple cursors
   Plug 'terryma/vim-multiple-cursors'
 
   " " Align code
@@ -135,15 +135,13 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
     let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver']
 
-  " Plug 'neoclide/coc-snippets'
-  " Plug 'SirVer/ultisnips'
-  " "   let g:UltiSnipsEditSplit="vertical"
-  " "   let g:UltiSnipsExpandTrigger="<C-l>"
-  " "   " let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/config/snippets']
-  " "   let g:UltiSnipsJumpForwardTrigger="<c-n>"
-  " "   let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  Plug 'neoclide/coc-snippets'
+  Plug 'SirVer/ultisnips'
+  let g:UltiSnipsEditSplit="vertical"
+  let g:UltiSnipsExpandTrigger="<C-l>"
+  let g:UltiSnipsJumpForwardTrigger="<c-n>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-  " Plug 'honza/vim-snippets'
   " Plug 'ervandew/supertab'
 
 " " -----------------------------------------------------------------------------

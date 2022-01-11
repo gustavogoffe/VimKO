@@ -76,10 +76,6 @@ call extend(g:which_key_map, {'ck':'Copy a line BELLOW'})
 nnoremap <leader>cj :+t.<left><left>
 call extend(g:which_key_map, {'cj':'Copy a line ABOVE'})
 
-" Opens a preview
-nnoremap <leader>f <Plug>(quickr_preview)
-call extend(g:which_key_map, {'f':'Opens a preview'})
-
 " Fold until level 1
 nnoremap <leader>1 :let &l:foldlevel = 0<CR>
 call extend(g:which_key_map, {'1':'Fold until level 1'})
