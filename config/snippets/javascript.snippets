@@ -1,3 +1,60 @@
+# My Snippets
+## React
+snippet rfc "React Functional Component" b
+import PropTypes from 'prop-types';
+import styles from './${2:$1}.css';
+
+const ${1:`!v expand('%:t:r')`} = props => {
+	return (
+		<${5:div}>
+			$0
+		</$5>
+	);
+}
+
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
+
+export default $1;
+endsnippet
+
+snippet rnfc "React Native Functional Component" b
+import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+
+const styles = StyleSheet.create({
+});
+
+const ${1:`!v expand('%:t:r')`} = props => {
+	return (
+		<View>
+		</View>
+	);
+}
+
+$1.propTypes = {
+
+};
+
+$1.defaultProps = {
+
+};
+
+export default $1;
+endsnippet
+
+## Javascript
+snippet clog
+console.log(${1}, '${1}')
+endsnippet
+
+# My Snippets
+
 snippet render
 	render() {
 		return (
@@ -6,22 +63,8 @@ snippet render
 	}
 endsnippet
 
-snippet log
-console.log('${1:here}')
-endsnippet
-
-snippet ()
-${1} => ${2}
-endsnippet
-
-snippet {}
-	(${1}) => {
-		${2}
-}
-endsnippet
-
 snippet import
-	import ${1:foo} from '${2:bar}'
+import ${1:foo} from '${2:bar}'
 endsnippet
 
 snippet consta
@@ -51,8 +94,8 @@ then( ({json, status}) => {
 })
 endsnippet
 
-# React
-snippet rfc "React Functional Component" b
+
+snippet oldrfc "React Functional Component" b
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './${2:$1}.css';
@@ -60,6 +103,14 @@ import styles from './${2:$1}.css';
 function ${1:`!v expand('%:t:r')`}({ $3 }) {
 	return (
 		<${5:div} className={styles.base}>
+			$0
+		</$5>
+	);
+}
+
+const ${1:`!v expand('%:t:r')`} = props => {
+	return (
+		<${5:div}>
 			$0
 		</$5>
 	);
@@ -79,7 +130,7 @@ if props:
 export default $1;
 endsnippet
 
-snippet rsc "React Styled Component" b
+snippet oldrsc "React Styled Component" b
 import styled from 'styled-components';
 
 const ${1:`!v expand('%:t:r')`} = styled.${2:div}\`

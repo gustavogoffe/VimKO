@@ -137,10 +137,10 @@ call plug#begin()
 
   Plug 'neoclide/coc-snippets'
   Plug 'SirVer/ultisnips'
-  let g:UltiSnipsEditSplit="vertical"
-  let g:UltiSnipsExpandTrigger="<C-l>"
-  let g:UltiSnipsJumpForwardTrigger="<c-n>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  " let g:UltiSnipsEditSplit="vertical"
+  " let g:UltiSnipsExpandTrigger="<C-l>"
+  " let g:UltiSnipsJumpForwardTrigger="<c-n>"
+  " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
   " Plug 'ervandew/supertab'
 
