@@ -305,8 +305,6 @@ normal '*', ':%s/\<<C-r><C-w>\>//n<cr>0N', desc: 'Select all occurences of the w
 normal '<expr> gp', "'`['.strpart(getregtype(), 0, 1).'`]'", desc: 'Selecte pasted text'
 visual 's', ':s//g<Left><Left>', desc: 'Substitute inside selection', execute: false
 
-normal 'N', 'n', desc: ''
-normal 'n', 'N', desc: ''
 normal 'Y', 'y$', desc: 'Yank until end of line'
 normal 'q', ':<C-U>:quit', desc: 'quit'
 
@@ -322,8 +320,8 @@ normal ']g', '<Plug>(coc-diagnostic-next)', desc: '', recursively: true
 
 normal ';w', ':w', desc: 'Quick save'
 
-normal 'f', '<Plug>Sneak_f', desc: 'Find by 2 chars(forward)', recursively: true
-normal 'F', '<Plug>Sneak_F', desc: 'Find by 2 chars(backward)', recursively: true
+normal 'f', '<Plug>Sneak_s', desc: 'Find by 2 chars(forward)', recursively: true
+normal 'F', '<Plug>Sneak_S', desc: 'Find by 2 chars(backward)', recursively: true
 
 insert '<expr> <C-j>', 'pumvisible() ? "\<C-n>" : "\<C-j>"', desc: 'Remap move DOWN on suggestions'
 insert '<expr> <C-k>', 'pumvisible() ? "\<C-p>" : "\<C-k>"', desc: 'Remap move UP on suggestions'

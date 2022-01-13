@@ -621,8 +621,6 @@ nnoremap * :%s/\<<C-r><C-w>\>//n<cr>0N
 
 " Selecte pasted text
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
-nnoremap N n
-nnoremap n N
 
 " Yank until end of line
 nnoremap Y y$
@@ -648,10 +646,10 @@ nmap ]g <Plug>(coc-diagnostic-next)
 nnoremap ;w :w<CR>
 
 " Find by 2 chars(forward)
-nmap f <Plug>Sneak_f
+nmap f <Plug>Sneak_s
 
 " Find by 2 chars(backward)
-nmap F <Plug>Sneak_F
+nmap F <Plug>Sneak_S
 
 " Remap move DOWN on suggestions
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
