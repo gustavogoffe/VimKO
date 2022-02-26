@@ -166,6 +166,12 @@ function! CutAndPasteByLineNumber(relative_line_number)
   call setpos(".", cursor_position)
 endfunction
 
+function! DateFunc()
+  put =strftime(\"## %a %d %b %Y \")
+endfunction
+
+command! Date call DateFunc()
+
 " set working directory to git project root
 " or directory of current file if not git project
 function! SetProjectRoot()
