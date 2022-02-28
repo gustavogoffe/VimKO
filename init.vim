@@ -188,23 +188,3 @@ endfunction
 
 " TODO add to mappings manager 
 cnoremap <C-A> <Home>
-
-" set color to foreground almost full white
-call one#highlight('Normal',      'e8eaeb',  '',  '')
-call one#highlight('Comment',     '91969e',  '',  '')
-
-call one#highlight('markdownUrl',               'ff6600',  '',  '')
-call one#highlight('markdownBold',              'ff6600',  '', '')
-call one#highlight('markdownItalic',            'ff6600',  '', '')
-call one#highlight('markdownCode',              'ff6600',  '', '')
-call one#highlight('markdownCodeBlock',         'ff6600',  '', '')
-call one#highlight('markdownCodeDelimiter',     'ff6600',  '', '')
-call one#highlight('markdownHeadingDelimiter',  'ff6600',  '', '')
-call one#highlight('markdownH1',                'ff6600',  '', '')
-call one#highlight('markdownH2',                'ff6600',  '', '')
-call one#highlight('markdownH3',                'ff6600',  '', '')
-call one#highlight('markdownH3',                'ff6600',  '', '')
-call one#highlight('markdownH4',                'ff6600',  '', '')
-call one#highlight('markdownH5',                'ff6600',  '', '')
-call one#highlight('markdownH6',                'ff6600',  '', '')
-call one#highlight('markdownListMarker',        'ff6600',  '', '')
