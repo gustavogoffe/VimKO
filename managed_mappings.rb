@@ -12,6 +12,15 @@ leader ' ' do
 
   normal 'x', ':call ToogleCheckbox()', desc: 'Toggle Checkbox (empty/[ ]/[x])'
 
+  # prefix 'b', name: 'Ruby Debug', desc: 'Debug' do
+  #   normal 'p', desc: "Insert binding.pry" do |nvim|
+  #     nvim.current.line = "binding.pry"
+  #   end
+  #   normal 'y', desc: "Insert byebug" do |nvim|
+  #     nvim.current.line = "byebug"
+  #   end
+  # end
+
   normal 'h', "<Plug>(quickhl-manual-this)", desc: 'Highlight toggle word', recursively: true
   visual 'h', "<Plug>(quickhl-manual-this)", desc: 'Highlight toggle word', recursively: true
   normal 'H', "<Plug>(quickhl-manual-reset)", desc: 'Highlight reset', recursively: true
@@ -27,11 +36,14 @@ leader ' ' do
   normal 'd', ':t.', desc: 'Smart Duplication'
   visual 'd', ':co-1', desc: 'Smart Duplication'
 
-  normal 'xk', ":call CutAndPasteByLineNumber('-')<left><left>", desc: "Line cut/past a line BELLOW", execute: false
-  normal 'xj', ":call CutAndPasteByLineNumber('+')<left><left>", desc: "Line cut/past a line ABOVE", execute: false
+  normal 'xk', ":call CutAndPasteByLineNumber('-')<left><left>", desc: "Line cut/paste a line BELLOW", execute: false
+  normal 'xj', ":call CutAndPasteByLineNumber('+')<left><left>", desc: "Line cut/paste a line ABOVE", execute: false
 
   normal 'ck', ':-t.<left><left>', desc: 'Copy a line BELLOW', execute: false
   normal 'cj', ':+t.<left><left>', desc: 'Copy a line ABOVE', execute: false
+
+  normal '"', 'viw<esc>a"<esc>bi"<esc>lel', desc: 'Surround a word with double quotes'
+  normal "sq", 'viw<esc>a\'<esc>bi\'<esc>lel', desc: 'Surround a word with single quotes'
 
   (1..6).each do |n|
     normal n.to_s, ":let &l:foldlevel = #{n - 1}", desc: "Fold until level #{n}"
@@ -47,9 +59,6 @@ leader ' ' do
     normal 'w', '<esc>viwpyiw', desc: 'Overwrite word'
     normal 'l', '<esc>O<esc>Pjddkjdd', desc: 'Overwrite line'
 
-    normal '(', '<esc>vi(p', desc: 'Overwrite in parentheses block'
-    normal ')', '<esc>vi)p', desc: 'Overwrite in parentheses block'
-
     normal '[', '<esc>vi[p', desc: 'Overwrite in [] block'
     normal ']', '<esc>vi)p', desc: 'Overwrite in [] block'
 
@@ -58,7 +67,6 @@ leader ' ' do
   end
 
   prefix 't', name: 'Toggles', desc: 'Toggles' do
-
     normal 'e', desc: 'Toggle everything(under cursor)' do |nvim|
       word = nvim.evaluate('expand("<cword>")')
       nvim.command(":echom '#{word}'")
@@ -86,13 +94,10 @@ leader ' ' do
       word = nvim.evaluate('expand("<cword>")')
       nvim.command(":echom '#{word}'")
     end
-
-    # TODO: Implement expressions
-    # normal '<expr> <C-k>', 'pumvisible() ? "\<C-p>" : "\<C-k>"', desc: 'Remap move UP on suggestions'
   end
 
   prefix 'ta', name: 'Tabularize', desc: 'Text alignment' do
-    [',', '=', ':', '{', '-'].each do |key|
+    [',', '=', ':', '{', '-', "\""].each do |key|
       normal key, ":Tabularize /#{key}\\zs", desc: "Align by #{key}"
       visual key, ":Tabularize /#{key}\\zs", desc: "Align by #{key}"
     end
@@ -141,15 +146,22 @@ end
 prefix ';', name: 'FuzzyFinder', desc: 'Fuzzy everything' do
   normal 'f', ':Files', desc: 'All files'
   normal 'g', ':Ag', desc: 'Search all'
+
   normal 't', ':Tags', desc: 'Search tags'
   normal 'T', ':BTags', desc: 'Search file tags'
+
   normal 'c', ':BCommits', desc: 'Commits'
+
   normal '/', '<Plug>(AerojumpBolt)', desc: 'Search lines', recursively: true
   normal 'af', ':Args', desc: 'Arglist files'
+
   normal 'ad', ':argadd %', desc: 'Arglist files'
   normal 'ar', ':argdelete %', desc: 'Arglist files'
+
   normal 'me', ':CocList outline', desc: 'Symbols in the current file.'
+
   normal 'n', ':e notes.md', desc: 'Open notes'
+
   normal 'r', ':Rg <c-r>=expand("<cword>")', desc: 'QuickFix current word'
 
   normal 'd', desc: 'Go to Datafix' do |nvim|
@@ -236,6 +248,7 @@ end
 
 prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
   normal 'b', ':below new \| resize 10 \| terminal bundle install', desc: 'Bundle Install'
+
   normal 't', desc: 'Run tests(whole file)' do |nvim|
     name = nvim.current.buffer.name
     if name.end_with?('.rb')
@@ -250,6 +263,7 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
       nvim.command(":call RunTestsOnLeftPane(expand('%:p'))")
     end
   end
+
   normal 'T', desc: 'Run tests(current line)' do |nvim|
     name = nvim.current.buffer.name
     if name.end_with?('.rb')
@@ -297,16 +311,14 @@ prefix '!', name: 'Terminal', desc: 'Vim Terminal and Tmux' do
   end
 end
 
-# prefix 'c', name: 'Changing text', desc: 'Changing text' do
-#   normal 't', '' desc: 'Change until the end of the tag', execute: false
-# end
-
 normal '*', ':%s/\<<C-r><C-w>\>//n<cr>0N', desc: 'Select all occurences of the word and display a counter', execute: false
-normal '<expr> gp', "'`['.strpart(getregtype(), 0, 1).'`]'", desc: 'Selecte pasted text'
+normal '<expr> gp', "'`['.strpart(getregtype(), 0, 1).'`]'", desc: 'Select pasted text'
 visual 's', ':s//g<Left><Left>', desc: 'Substitute inside selection', execute: false
 
 normal 'Y', 'y$', desc: 'Yank until end of line'
+
 normal 'q', ':<C-U>:quit', desc: 'quit'
+normal ';w', ':w', desc: 'Quick save'
 
 normal '<return>', 'za', desc: 'Toggle fold'
 
@@ -318,7 +330,6 @@ normal 'Q', 'q', desc: 'Record macro'
 normal '[g', '<Plug>(coc-diagnostic-prev)', desc: '', recursively: true
 normal ']g', '<Plug>(coc-diagnostic-next)', desc: '', recursively: true
 
-normal ';w', ':w', desc: 'Quick save'
 
 normal 'f', '<Plug>Sneak_s', desc: 'Find by 2 chars(forward)', recursively: true
 normal 'F', '<Plug>Sneak_S', desc: 'Find by 2 chars(backward)', recursively: true
@@ -347,6 +358,12 @@ normal 'gg', ':1', desc: 'Work around for keeping g a prefix for Git'
 
 normal '/', '<Plug>(easymotion-overwin-f2)', desc: 'Easymotion', recursively: true
 
+normal 'ev', ":vsplit $MYVIMRC<cr>", desc: "Edit my vim file"
+
 command 'Retab', ':set expandtab | retab', desc: "Replace tabs to specs of the current file"
 command '-bang Args', "call fzf#run(fzf#wrap('args', {'source': argv()}, <bang>0))", desc: "Funtion for FZF"
 command 'Reload', ':so ~/.config/nvim/init.vim', desc: "Reload command"
+
+# Disabling keys to force the use of correct mappings
+normal 'yy', '<Nop>', desc: 'Disabling yy in favor of <leader> + d'
+normal '?', '<Nop>', desc: 'Disabling ? in favor of ; + /'

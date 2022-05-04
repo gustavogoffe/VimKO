@@ -13,49 +13,50 @@ call plug#begin()
   " Lightning fast left-right movement in Vim
   Plug 'unblevable/quick-scope'
 
-  " Better motion
+  " Jump to any location specified by two characters
   Plug 'justinmk/vim-sneak'
   let g:sneak#label = 1
 
-  " " Fuzzy finder for lines in the current file
+  " Fuzzy finder for lines in the current file
   Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " " -----------------------------------------------------------------------------
 " " General
 " " -----------------------------------------------------------------------------
-  " " Insert and delete brakets, parens, quotes.
+  " Insert and delete brackets, parens, quotes.
   Plug 'jiangmiao/auto-pairs'
 
+  " Run your favorite search tool from Vim, with an enhanced results list
   Plug 'mileszs/ack.vim'
 
-  " " Rainbow Parentheses
+  " Rainbow Parentheses
   Plug 'luochen1990/rainbow'
 
-  " " Make the yanked region apparent!
+  " Make the yanked region apparent!
   Plug 'machakann/vim-highlightedyank'
 
-
+  " A simple line number indicator on left scroll
   Plug 'drzel/vim-line-no-indicator'
 
-  " " Vim plugin that shows keybindings in popup
+  " Vim plugin that shows keybindings in popup
   Plug 'leoatchina/vim-which-key'
 
-  " " Mapping manager
+  " Mapping manager
   " Plug 'AlexVKO/vim-mapping-manager', { 'do' : ':UpdateRemotePlugins' }
   Plug 'file://'.expand('~/.config/vim_mapping_manager'), { 'do' : ':UpdateRemotePlugins', 'as': 'vim-mapping-manager-dev' }
 
-
-  " " Highligh the cursor word
+  " Highligh the cursor word
   Plug 't9md/vim-quickhl'
 
   " " Quickr preview
-  Plug 'ronakg/quickr-preview.vim'
-  let g:quickr_preview_keymaps = 0
+  " Plug 'ronakg/quickr-preview.vim'
+  " let g:quickr_preview_keymaps = 0 " Use my own key mappings, disable the default key mappings.
+  " let g:quickr_preview_position = 'left'
 
-  " " Tmux tabs integration
+  " Tmux tabs integration
   Plug 'christoomey/vim-tmux-navigator'
 
-  " " Send commands to other tmux tabs from vim
+  " Send commands to other tmux tabs from vim
   Plug 'benmills/vimux'
   "   let g:VimuxOrientation = "h"
   "   let g:VimuxHeight = "40"

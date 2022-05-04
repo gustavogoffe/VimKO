@@ -17,5 +17,4 @@
     "javascriptreact": ["javascript"]
   },
   "snippets.userSnippetsDirectory": "~/.config/nvim/config/snippets"
-
 }

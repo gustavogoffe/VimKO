@@ -8,34 +8,22 @@ function SetCustomColors()
   call one#highlight('vimCommentTitle',     '91969e',  '',        '')
   call one#highlight('vimLineComment',      '91969e',  '',        '')
   call one#highlight('Comment',             '91969e',  '',        '')
-
-  " Ruby
-  " call one#highlight('rubyFunction', '',        '',        'bold')
-  "
-  " Markdown
-  " call one#highlight('markdownUrl',               '000000',  '', '')
-  " call one#highlight('markdownBold',              '000000',  '', '')
-  " call one#highlight('markdownItalic',            '000000',  '', '')
-  " call one#highlight('markdownCode',              '000000',  '', '')
-  " call one#highlight('markdownCodeBlock',         '000000',  '', '')
-  " call one#highlight('markdownCodeDelimiter',     '000000',  '', '')
-  " call one#highlight('markdownHeadingDelimiter',  '000000',  '', '')
-  " call one#highlight('markdownH1',                '000000',  '', '')
-  " call one#highlight('markdownH2',                '000000',  '', '')
-  " call one#highlight('markdownH3',                '000000',  '', '')
-  " call one#highlight('markdownH3',                '000000',  '', '')
-  " call one#highlight('markdownH4',                '000000',  '', '')
-  " call one#highlight('markdownH5',                '000000',  '', '')
-  " call one#highlight('markdownH6',                '000000',  '', '')
-  " call one#highlight('markdownListMarker',        '000000',  '', '')
 endfunc
 
 set termguicolors
-colorscheme one
 set background=dark
+colorscheme one
 
 let g:one_allow_italics = 1
 
+" Remove the background color and let the iTerm background color.
 highlight Normal guibg=none
+
+" Markdown styles
+highlight htmlH1 guifg=#ffd01b gui=bold
+highlight htmlH2 guifg=#8be9fd gui=bold
+highlight htmlH3 guifg=#ff79c6 gui=bold
+highlight htmlH4 guifg=#ffb86c gui=bold
+highlight htmlH5 guifg=#f1fa8c gui=bold
 
 call SetCustomColors()

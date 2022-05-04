@@ -60,13 +60,13 @@ call extend(g:which_key_map, {'d':'Smart Duplication'})
 " Smart Duplication
 xnoremap <leader>d :co-1<CR>
 
-" Line cut/past a line BELLOW
+" Line cut/paste a line BELLOW
 nnoremap <leader>xk :call CutAndPasteByLineNumber('-')<left><left>
-call extend(g:which_key_map, {'xk':'Line cut/past a line BELLOW'})
+call extend(g:which_key_map, {'xk':'Line cut/paste a line BELLOW'})
 
-" Line cut/past a line ABOVE
+" Line cut/paste a line ABOVE
 nnoremap <leader>xj :call CutAndPasteByLineNumber('+')<left><left>
-call extend(g:which_key_map, {'xj':'Line cut/past a line ABOVE'})
+call extend(g:which_key_map, {'xj':'Line cut/paste a line ABOVE'})
 
 " Copy a line BELLOW
 nnoremap <leader>ck :-t.<left><left>
@@ -75,6 +75,14 @@ call extend(g:which_key_map, {'ck':'Copy a line BELLOW'})
 " Copy a line ABOVE
 nnoremap <leader>cj :+t.<left><left>
 call extend(g:which_key_map, {'cj':'Copy a line ABOVE'})
+
+" Surround a word with double quotes
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+call extend(g:which_key_map, {'"':'Surround a word with double quotes'})
+
+" Surround a word with single quotes
+nnoremap <leader>sq viw<esc>a'<esc>bi'<esc>lel
+call extend(g:which_key_map, {'sq':'Surround a word with single quotes'})
 
 " Fold until level 1
 nnoremap <leader>1 :let &l:foldlevel = 0<CR>
@@ -119,14 +127,6 @@ call extend(g:which_key_map, {'J':'Parameterize current line'})
   " Overwrite line
   nnoremap <leader>ol <esc>O<esc>Pjddkjdd
   call extend(g:which_key_map['o'], {'l':'Overwrite line'})
-
-  " Overwrite in parentheses block
-  nnoremap <leader>o( <esc>vi(p
-  call extend(g:which_key_map['o'], {'(':'Overwrite in parentheses block'})
-
-  " Overwrite in parentheses block
-  nnoremap <leader>o) <esc>vi)p
-  call extend(g:which_key_map['o'], {')':'Overwrite in parentheses block'})
 
   " Overwrite in [] block
   nnoremap <leader>o[ <esc>vi[p
@@ -202,6 +202,13 @@ call extend(g:which_key_map, {'J':'Parameterize current line'})
 
   " Align by -
   xnoremap <leader>ta- :Tabularize /-\zs<CR>
+
+  " Align by "
+  nnoremap <leader>ta" :Tabularize /"\zs<CR>
+  call extend(g:which_key_map['ta'], {'"':'Align by "'})
+
+  " Align by "
+  xnoremap <leader>ta" :Tabularize /"\zs<CR>
 
   " Align by input
   nnoremap <leader>tat :Tabularize /
@@ -619,7 +626,7 @@ call extend(g:which_key_map_terminal, {'x':'Sends exit'})
 " Select all occurences of the word and display a counter
 nnoremap * :%s/\<<C-r><C-w>\>//n<cr>0N
 
-" Selecte pasted text
+" Select pasted text
 nnoremap <expr> gp '`['.strpart(getregtype(), 0, 1).'`]'
 
 " Yank until end of line
@@ -627,6 +634,9 @@ nnoremap Y y$
 
 " quit
 nnoremap q :<C-U>:quit<CR>
+
+" Quick save
+nnoremap ;w :w<CR>
 
 " Toggle fold
 nnoremap <return> za
@@ -641,9 +651,6 @@ xnoremap > >gv|
 nnoremap Q q
 nmap [g <Plug>(coc-diagnostic-prev)
 nmap ]g <Plug>(coc-diagnostic-next)
-
-" Quick save
-nnoremap ;w :w<CR>
 
 " Find by 2 chars(forward)
 nmap f <Plug>Sneak_s
@@ -703,6 +710,15 @@ nnoremap gg :1<CR>
 
 " Easymotion
 nmap / <Plug>(easymotion-overwin-f2)
+
+" Edit my vim file
+nnoremap ev :vsplit $MYVIMRC<cr><CR>
+
+" Disabling yy in favor of <leader> + d
+nnoremap yy <Nop>
+
+" Disabling ? in favor of ; + /
+nnoremap ? <Nop>
 
 
 " ----------------------------------------------------------------
