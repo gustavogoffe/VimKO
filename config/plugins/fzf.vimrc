@@ -1,6 +1,6 @@
-let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!**/node_modules/*" --glob "!*.png" --glob "!/tmp/*" --glob "!/plugged/*" --glob "!**/*.beam" --glob "!/deps/*" --glob "!**/app/frontend/dist/*" --glob "!**/spec/fixtures/*" '
+let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!**/node_modules/*" --glob "!*.png" --glob "!**/tmp/*" --glob "!/plugged/*" --glob "!**/*.beam" --glob "!**/deps/*" --glob "!**/spec/fixtures/*" --glob "!schema.graphql" --glob "!**/app/assets/javascripts/bundles/*" '
 
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --literal --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --literal --no-ignore --hidden --follow --glob "!.git/*" --glob "!schema.graphql" --glob "!.app/assets/javascripts/bundles/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " command! -bang -nargs=? -complete=dir Files
 "       \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)

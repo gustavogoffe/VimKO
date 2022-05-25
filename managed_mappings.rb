@@ -106,7 +106,6 @@ leader ' ' do
     visual 't', ':Tabularize /', desc: 'Align by input'
   end
 
-  # TODO: not working
   prefix 'l', name: 'Language', desc: 'Languages' do
     normal 'd', '<Plug>(coc-definition)', desc: '(Coc) Go to definition', recursively: true
     normal 'r', '<Plug>(coc-references)', desc: '(Coc) Find references', recursively: true
@@ -366,4 +365,4 @@ command 'Reload', ':so ~/.config/nvim/init.vim', desc: "Reload command"
 
 # Disabling keys to force the use of correct mappings
 normal 'yy', '<Nop>', desc: 'Disabling yy in favor of <leader> + d'
-normal '?', '<Nop>', desc: 'Disabling ? in favor of ; + /'
+# normal '?', '<Nop>', desc: 'Disabling ? in favor of ; + /'

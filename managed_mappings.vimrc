@@ -717,9 +717,6 @@ nnoremap ev :vsplit $MYVIMRC<cr><CR>
 " Disabling yy in favor of <leader> + d
 nnoremap yy <Nop>
 
-" Disabling ? in favor of ; + /
-nnoremap ? <Nop>
-
 
 " ----------------------------------------------------------------
 " Commands
