@@ -1,5 +1,5 @@
-let g:python3_host_prog='/opt/homebrew/bin/python3'
-let g:python_host_prog='/usr/bin/python2'
+let g:python3_host_prog='/usr/local/bin/python3'
+let g:python_host_prog='/Users/gustavofe/.pyenv/versions/2.7.18/bin/python'
 
 source $HOME/.config/nvim/config/plugins.vimrc
 source $HOME/.config/nvim/config/theme.vimrc

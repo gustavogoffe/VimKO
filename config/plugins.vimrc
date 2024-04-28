@@ -48,6 +48,9 @@ call plug#begin()
   " Highligh the cursor word
   Plug 't9md/vim-quickhl'
 
+  " Copilot
+  " Plug 'github/copilot.vim'
+
   " " Quickr preview
   " Plug 'ronakg/quickr-preview.vim'
   " let g:quickr_preview_keymaps = 0 " Use my own key mappings, disable the default key mappings.
@@ -148,21 +151,22 @@ call plug#begin()
 " " -----------------------------------------------------------------------------
 " " Text Objects
 " " -----------------------------------------------------------------------------
-  " Plug 'kana/vim-textobj-user'
-  " Plug 'kana/vim-textobj-entire'
-  " Plug 'lucapette/vim-textobj-underscore'
-  " Plug 'rhysd/vim-textobj-ruby'
-  " Plug 'kana/vim-textobj-indent'
-  " Plug 'thinca/vim-textobj-function-javascript'
-  " Plug 'inside/vim-textobj-jsxattr'
-  " Plug 'whatyouhide/vim-textobj-erb'
-  " Plug 'kana/vim-textobj-function'
-  " Plug 'mxw/vim-jsx'
+  Plug 'kana/vim-textobj-user'
+  Plug 'kana/vim-textobj-entire'
+  Plug 'lucapette/vim-textobj-underscore'
+  Plug 'rhysd/vim-textobj-ruby'
+  Plug 'kana/vim-textobj-indent'
+  Plug 'thinca/vim-textobj-function-javascript'
+  Plug 'inside/vim-textobj-jsxattr'
+  Plug 'whatyouhide/vim-textobj-erb'
+  Plug 'kana/vim-textobj-function'
+  Plug 'mxw/vim-jsx'
+  " Plug 'leafgarland/typescript-vim'
   "
   " Plug 'tpope/vim-surround'
-  "   let g:surround_35  = "#{\r}"    " #
-  "   let g:surround_45 = "<% \r %>"  " -
-  "   let g:surround_61 = "<%= \r %>" " =
+    let g:surround_35  = "#{\r}"    " #
+    let g:surround_45 = "<% \r %>"  " -
+    let g:surround_61 = "<%= \r %>" " =
 
 " " -----------------------------------------------------------------------------
 " " Ctags

@@ -1,7 +1,7 @@
 {
   "codeLens.enable": false,
   "suggest.enablePreview": true,
-  "suggest.timeout": 1000,
+  "suggest.timeout": 5000,
   "suggest.noselect": false,
   "git.enableGlobalStatus": false,
   "coc.preferences.formatOnSaveFiletypes": [ ],

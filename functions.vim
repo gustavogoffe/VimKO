@@ -29,7 +29,7 @@ endf
 
 function! RunTestsOnLeftPane(file_name)
   if(match(a:file_name, '_spec.rb') != -1)
-    VimuxRunCommand("ddo bundle exec rspec " . a:file_name)
+    VimuxRunCommand("bundle exec rspec " . a:file_name)
   elseif(match(a:file_name, '.feature') != -1)
     VimuxRunCommand("clear; bin/spring cucumber " . a:file_name . " --fail-fast --profile")
   elseif(match(a:file_name, 'test/.*_test.exs') != -1)
@@ -82,3 +82,4 @@ function! SetProjectRoot()
     lcd `=git_dir`
   endif
 endfunction
+command! Root call SetProjectRoot()

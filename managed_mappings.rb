@@ -364,5 +364,5 @@ command '-bang Args', "call fzf#run(fzf#wrap('args', {'source': argv()}, <bang>0
 command 'Reload', ':so ~/.config/nvim/init.vim', desc: "Reload command"
 
 # Disabling keys to force the use of correct mappings
-normal 'yy', '<Nop>', desc: 'Disabling yy in favor of <leader> + d'
+# normal 'yy', '<Nop>', desc: 'Disabling yy in favor of <leader> + d'
 # normal '?', '<Nop>', desc: 'Disabling ? in favor of ; + /'

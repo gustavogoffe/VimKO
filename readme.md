@@ -35,21 +35,21 @@ Only tested with Neovim.
 | `!`              | Normal        | Start an external Command with a single bang        |
 | `jk`             | Insert        | Go to normal mode                                   |
 | `<Leader>h`      | All           | Toogle permanent Highlight for word under cursor    |
-| `<Leader>y`      | Visual        | Toogle permanent Highlight for selected region      |
+| `<Leader>y`      | Visual        | Toogle permanent Highlight for selected region (not working)      |
 | `<Leader>x`      | Visual        | Toggle markdown checkbox ([] -> [x] -> [n/a] -> []) |
 | `<Leader>v`      | Visual        | Expand selected region                              |
 | `<Leader>,`      | Visual        | Remove emtpy speces                                 |
 | `s`              | visual        | Replace within selected area                        |
-| `gp`             | Normal        | Select last paste                                   |
+| `gp`             | Normal        | Select last paste (p works as same)                                   |
 | `Y`              | Normal        | Copy until the end of line                          |
 | `q`              | Normal        | Quit                                                |
 | `<ctrl>o`        | visual        | Jump to last edited location                        |
 | `<ctrl>i`        | visual        | Jump to next edited location                        |
-| `<Ctrl>r`        | insert        | Open resgister content                              |
+| `<Ctrl>r`        | insert        | Open resgister content (not working)                              | 
 | `gc<motion>`     | Normal/visual | Toggle comments                                     |
 | `/`              | Normal        | Easy motion between panels                          |
 | `W!!`            | Command       | Save with sudo                                      |
-| `<Leader>;`      | Normal        | Toggle tag bar                                      |
+| `<Leader>;`      | Normal        | Toggle tag bar (not working)                                      |
 | `<Leader>x(j/k)` | Normal        | Cut line by number to the current cursor position   |
 | `<Leader>c(j/k)` | Normal        | Copy line by number to the current cursor position  |
 
@@ -57,7 +57,7 @@ Only tested with Neovim.
 | key | Mode   | Action  |
 | -   | -      | -       |
 | `Q` | Normal | Record  |
-| `M` | Normal | Execute |
+| `M` | Normal | Execute (not working) |
 
 ## Windows `s`
 | key                | Mode   | Action                  |
@@ -81,7 +81,7 @@ Only tested with Neovim.
 ## Files `,`
 | key         | Mode   | Action                                |
 | -           | -      | -                                     |
-| `<Files>du` | Normal | Duplicate current file                |
+| `<Files>du` | Normal | Duplicate current file (not working)                |
 | `<Files>de` | Normal | Delete current file                   |
 | `<Files>m`  | Normal | Move/Rename current file              |
 | `<Files>y`  | Normal | Copy file-path to clipboard(relative) |
@@ -101,7 +101,7 @@ Only tested with Neovim.
 | `<FuzzyFinder>f` | Normal | Files                 |
 | `<FuzzyFinder>w` | Normal | Opened Windows        |
 | `<FuzzyFinder>g` | Normal | Search text all       |
-| `<FuzzyFinder>t` | Normal | Tags                  |
+| `<FuzzyFinder>t` | Normal | Tags (failed to create tags)                  |
 | `<FuzzyFinder>T` | Normal | Tags(Current Buffer)  |
 | `<FuzzyFinder>c` | Normal | Commits(current file) |
 | `<FuzzyFinder>b` | Normal | Buffers               |

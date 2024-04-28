@@ -714,9 +714,6 @@ nmap / <Plug>(easymotion-overwin-f2)
 " Edit my vim file
 nnoremap ev :vsplit $MYVIMRC<cr><CR>
 
-" Disabling yy in favor of <leader> + d
-nnoremap yy <Nop>
-
 
 " ----------------------------------------------------------------
 " Commands
