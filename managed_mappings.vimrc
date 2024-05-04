@@ -1,4 +1,3 @@
-
 " ----------------------------------------------------------------
 " Leader
 " ----------------------------------------------------------------
@@ -659,11 +658,25 @@ nmap f <Plug>Sneak_s
 nmap F <Plug>Sneak_S
 
 " Remap move DOWN on suggestions
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+" inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 
 " Remap move UP on suggestions
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+" inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
+" ---- ADDED MANUALLY
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+
+" use <tab> to trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+" ---- ADDED MANUALLY
 
 " ----------------------------------------------------------------
 " Namespace Resize
@@ -713,7 +726,6 @@ nmap / <Plug>(easymotion-overwin-f2)
 
 " Edit my vim file
 nnoremap ev :vsplit $MYVIMRC<cr><CR>
-
 
 " ----------------------------------------------------------------
 " Commands
